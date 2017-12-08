@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hongao.quartz.dao.QuartzJobMapper" >
+  
+  <!-- 添加定时任务 -->
+  <insert id="addQuartzJob" parameterType="QuartzJob" useGeneratedKeys="true" keyProperty="id">
+ 	 insert into ha_quartz_job
+ 	 (
+ 	 	bizId, 
+ 	 	job_name,
+ 	 	alias_name,
+ 	 	job_group,
+ 	 	job_trigger,
+ 	 	status,
+ 	 	cron_expression,
+ 	 	is_sync,
+ 	 	url,
+ 	 	description,
+ 	 	crt_date,
+ 	 	upd_date
+ 	 )
+ 	 values(
+ 	 	#{bizId}, 
+ 	 	#{jobName},
+ 	 	#{aliasName},
+ 	 	#{jobGroup},
+ 	 	#{jobTrigger},
+ 	 	1,
+ 	 	#{cronExpression},
+ 	 	#{isSync},
+ 	 	#{url},
+ 	 	#{description},
+ 	 	now(),
+ 	 	null
+ 	 )
+  </insert>
+  
+  <!-- 失效定时任务 -->
+  <update id="invalidQuartzJob">
+ 	 update ha_quartz_job
+ 	 set status=2,
+ 	 upd_date=now()
+ 	 where id=#{id}
+  </update>
+  
+  <!-- 修改定时任务 -->
+  <update id="updateQuartzJob" parameterType="QuartzJob">
+ 	 update ha_quartz_job
+ 	 set cron_expression=#{cronExpression},
+ 	 alias_name=#{aliasName},
+ 	 url=#{url},
+ 	 upd_date=now()
+ 	 where id=#{scheduleJobId}
+  </update>
+  
+  <!-- 查询有效的定时任务 -->
+  <select id="existed" resultType="QuartzJob">
+  	select 
+  		id as id, 
+  		bizId as bizId, 
+  		job_name as jobName, 
+  		alias_name as aliasName, 
+  		job_group as jobGroup, 
+  		job_trigger as jobTrigger, 
+  		status as status, 
+  		cron_expression as cronExpression, 
+  		is_sync as isSync, 
+  		url as url, 
+  		description as description, 
+  		crt_date as crtDate, 
+  		upd_date as updDate
+  	from ha_quartz_job
+  	where job_group=#{jobGroup}
+  	and bizId=#{bizId}
+  	and `status`=1
+  	limit 0, 1
+  </select>
+</mapper>
