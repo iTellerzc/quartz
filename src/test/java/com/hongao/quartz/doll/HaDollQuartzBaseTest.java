@@ -1,4 +1,4 @@
-package com.hongao.quartz;
+package com.hongao.quartz.doll;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date 2017年12月8日 下午3:59:09
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:ha-quartz-test.xml"})
-public abstract class ABaseTest {
+@ContextConfiguration(locations={"classpath:ha-doll-quartz-test.xml"})
+public abstract class HaDollQuartzBaseTest {
 
 }

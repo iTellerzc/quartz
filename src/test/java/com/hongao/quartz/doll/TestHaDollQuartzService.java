@@ -1,4 +1,4 @@
-package com.hongao.quartz;
+package com.hongao.quartz.doll;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import com.hongao.quartz.service.HaQuartzService;
  *
  * @date 2017年12月8日 下午4:01:47
  */
-public class TestHaQuartzService extends ABaseTest{
+public class TestHaDollQuartzService extends HaDollQuartzBaseTest{
 	
 	@Autowired
 	private HaQuartzService haQuartzService;
