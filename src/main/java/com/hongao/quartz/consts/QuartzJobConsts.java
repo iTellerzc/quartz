@@ -17,6 +17,11 @@ public class QuartzJobConsts {
 	 */
 	public static final String BIZ_ID = "bizId";
 	
+	/**
+	 * 分割标记
+	 */
+	public static final String SPLT_FLAG = ":";
+	
 	private QuartzJobConsts(){
 		
 	}
