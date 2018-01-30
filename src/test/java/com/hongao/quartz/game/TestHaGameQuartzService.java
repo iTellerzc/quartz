@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hongao.parent.exception.HaBizException;
+import com.hongao.quartz.consts.JobAliasNames;
 import com.hongao.quartz.consts.JobGroups;
 import com.hongao.quartz.dto.RegQuartzTaskReq;
 import com.hongao.quartz.service.HaQuartzService;
@@ -22,15 +23,15 @@ public class TestHaGameQuartzService extends HaGameQuartzBaseTest{
 	@Test
 	public void testRegister() throws HaBizException, InterruptedException{
 		RegQuartzTaskReq regQuartzTaskReq = new RegQuartzTaskReq();
-		regQuartzTaskReq.setAliasName("测试");
-		regQuartzTaskReq.setBizId(1L);
+		regQuartzTaskReq.setAliasName(JobAliasNames.RECHARGE);
+		regQuartzTaskReq.setBizId(516L);
 		regQuartzTaskReq.setCronExpression("0/1 * * * * ?");
 		regQuartzTaskReq.setDescription("测试 job");
 		regQuartzTaskReq.setIsSync(false);
-		regQuartzTaskReq.setJobGroup(JobGroups.TEST);
-		regQuartzTaskReq.setJobName(JobGroups.TEST + ":" + 1L);
-		regQuartzTaskReq.setUrl("http://localhost:8080/test/test");
+		regQuartzTaskReq.setJobGroup(JobGroups.GAME_PAY);
+		regQuartzTaskReq.setJobName(JobGroups.GAME_PAY + ":" + 516L);
+		regQuartzTaskReq.setUrl("http://localhost:8080/ryqp/quartz/txnScan.shtml");
 		haQuartzService.register(regQuartzTaskReq);
-		Thread.sleep(1000*60*10);
+		Thread.sleep(1000*10);
 	}
 }

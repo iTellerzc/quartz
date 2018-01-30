@@ -35,5 +35,5 @@ public interface QuartzJobMapper {
 	 * 失效任务
 	 * @param quartzJobId
 	 */
-	void invalidQuartzJob(@Param(value="scheduleJobId") Long quartzJobId);
+	void invalidQuartzJob(@Param(value="id") Long quartzJobId);
 }
