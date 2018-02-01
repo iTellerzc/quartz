@@ -47,12 +47,12 @@ public class HaQuartzServiceImpl implements HaQuartzService {
 		
 		QuartzJob dbQuartzJob = quartzJobMapper.existed(regQuartzTaskReq.getJobGroup(), regQuartzTaskReq.getBizId());
 		if(dbQuartzJob != null){
-			logger.warn("jobName:%s, jobGoup:%s has existed.", regQuartzTaskReq.getJobName(), regQuartzTaskReq.getJobGroup());
+			logger.warn("jobName:{}, jobGoup:{} has existed.", regQuartzTaskReq.getJobName(), regQuartzTaskReq.getJobGroup());
 			ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
 			scheduleJob.setId(dbQuartzJob.getId());
 			quartzJobMapper.updateQuartzJob(scheduleJob);
 		}else{
-			logger.warn("jobName:%s, jobGoup:%s has not existed, register it.", regQuartzTaskReq.getJobName(), regQuartzTaskReq.getJobGroup());
+			logger.warn("jobName:{}, jobGoup:{} not existed, register it.", regQuartzTaskReq.getJobName(), regQuartzTaskReq.getJobGroup());
 			ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
 			quartzJobMapper.addQuartzJob(scheduleJob);
 		}
